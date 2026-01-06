@@ -89,7 +89,7 @@ const uint16_t PROGMEM fg_end_combo[] = {KC_F, KC_G, COMBO_END};
 const uint16_t PROGMEM as_home_combo[] = {KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM asdf_tab_combo[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM rt_esc_combo[] = {KC_R, KC_T, COMBO_END};
-const uint16_t PROGMEM jklscln_ent_combo[] = {KC_H, KC_J, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM jklscln_ent_combo[] = {KC_H, KC_J, KC_L, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM sdf_bspc_combo[] = {KC_S, KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM jkl_del_combo[] = {KC_J, KC_K, KC_L, COMBO_END};
 
