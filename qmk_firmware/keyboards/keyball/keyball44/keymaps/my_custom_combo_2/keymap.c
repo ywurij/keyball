@@ -76,7 +76,7 @@ enum combos {
   AS_HOME,
   ASDF_TAB,
   RT_ESC,
-  JKLSCLN_ENT,
+  JK_ENT,
   SDF_BSPC,
   JKL_DEL,
 };
@@ -89,7 +89,7 @@ const uint16_t PROGMEM fg_end_combo[] = {KC_F, KC_G, COMBO_END};
 const uint16_t PROGMEM as_home_combo[] = {KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM asdf_tab_combo[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM rt_esc_combo[] = {KC_R, KC_T, COMBO_END};
-const uint16_t PROGMEM jklscln_ent_combo[] = {KC_H, KC_J, KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM jk_ent_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM sdf_bspc_combo[] = {KC_S, KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM jkl_del_combo[] = {KC_J, KC_K, KC_L, COMBO_END};
 
@@ -102,7 +102,7 @@ combo_t key_combos[] = {
   [AS_HOME] = COMBO(as_home_combo, KC_HOME),
   [ASDF_TAB] = COMBO(asdf_tab_combo, KC_TAB),
   [RT_ESC] = COMBO(rt_esc_combo, KC_ESC),
-  [JKLSCLN_ENT] = COMBO(jklscln_ent_combo, KC_ENT),
+  [JK_ENT] = COMBO(jk_ent_combo, KC_ENT),
   [SDF_BSPC] = COMBO(sdf_bspc_combo, KC_BSPC),
   [JKL_DEL] = COMBO(jkl_del_combo, KC_DEL),
 };
