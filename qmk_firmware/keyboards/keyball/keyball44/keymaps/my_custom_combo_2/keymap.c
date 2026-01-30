@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                        KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINUS ,
     LSFT_T(KC_TAB), KC_A , KC_S    , KC_D     , KC_F     , KC_G     ,                                        KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
     KC_LCTL  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                                        KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_INT1  ,
-              KC_LWIN , KC_LALT , C(KC_ENT) , LT(2,KC_INT5) , LT(4,KC_SPACE),           RCTL_T(KC_SPACE), RSFT_T(KC_INT4), KC_NO , KC_NO  ,            TG(5)
+              KC_LWIN , KC_LALT , C(KC_ENT) , LT(2,KC_SPACE) , LT(4,KC_INT5),           RCTL_T(KC_INT4), RSFT_T(KC_SPACE), KC_NO , KC_NO  ,            TG(5)
   ),
 
   [1] = LAYOUT_universal(
@@ -39,8 +39,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [2] = LAYOUT_universal(
     KC_NO  , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),                                                    S(KC_6)  , S(KC_7)  , S(KC_8)  , S(KC_9)  , KC_LBRC  , KC_EQL   ,
-    KC_NO  , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,                                                    KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_PPLS  ,
-    KC_NO  , KC_SCLN, KC_QUOT, KC_COMM, S(KC_8), KC_RBRC,                                                    KC_NUHS  , S(KC_9)  , KC_DOT   , KC_PDOT  , KC_PSLS  , KC_PMNS  ,
+    KC_NO  , KC_P1  , KC_P2  , KC_P3  , KC_P4  , KC_P5  ,                                                    KC_P6    , KC_P7    , KC_P8    , KC_P9    , KC_P0    , KC_PMNS  ,
+    KC_NO  , KC_SCLN, KC_QUOT, KC_COMM, S(KC_8), KC_RBRC,                                                    KC_NUHS  , S(KC_9)  , KC_DOT   , KC_PDOT  , KC_PSLS  , KC_PPLS  ,
                   KC_INT1, KC_INT3, KC_NO  , KC_NO  , KC_NO  ,                                      MO(3)  , KC_RSFT  , KC_NO    , KC_NO    ,            KC_PAST
   ),
 
