@@ -20,6 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
+enum custom_keycodes {
+  MC_ID = SAFE_RANGE,
+  MC_PASS1,
+  MC_PASS2,
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
@@ -40,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT_universal( /* number & marks layer */
     S(KC_LBRC), S(KC_1), S(KC_2), S(KC_3)   , S(KC_4), S(KC_5),                          KC_EQL , S(KC_6), KC_PAST   , S(KC_INT3), S(KC_INT1), S(KC_EQL),
     KC_PMNS   , KC_P1  , KC_P2  , KC_P3     , KC_P4  , KC_P5  ,                          KC_P6  , KC_P7  , KC_P8     , KC_P9     , KC_P0     , KC_PPLS  ,
-    KC_INT1   , S(KC_7), KC_SCLN, S(KC_RBRC), S(KC_8), KC_RBRC,                          KC_BSLC, S(KC_9), S(KC_BSLC), KC_QUOT   , S(KC_2)   , KC_PSLS  ,
+    KC_INT1   , S(KC_7), KC_SCLN, S(KC_RBRC), S(KC_8), KC_RBRC,                          KC_BSLS, S(KC_9), S(KC_BSLS), KC_QUOT   , S(KC_2)   , KC_PSLS  ,
                   TG(6), KC_NO, KC_NO, KC_PDOT, LT(3, KC_PEQL),                 LT(3, KC_PEQL), KC_PDOT, KC_NO, KC_NO, TG(6)
   ),
 
@@ -52,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),  
 
   [4] = LAYOUT_universal( /* numpad & arrows layer */
-    KC_NO, KC_TAP , KC_HOME, KC_UP  , KC_PGUP , KC_NO ,                                   KC_TAB , KC_P7, KC_P8, KC_P9, KC_PPLS, KC_BEQL,
-    KC_NO, KC_ENT , KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO ,                                   KC_BSPC, KC_P4, KC_P5, KC_P6, KC_PMNS, KC_PENT,
-    KC_NO, KC_ENT , KC_END  , KC_NO  , KC_PGDN, KC_NO ,                                   C(KC_F), KC_P1, KC_P2, KC_P3, KC_PSLS, KC_PAST,
+    MC_ID   , KC_TAB , KC_HOME, KC_UP  , KC_PGUP , KC_NO ,                               KC_TAB , KC_P7, KC_P8, KC_P9, KC_PPLS, KC_PEQL,
+    MC_PASS1, KC_ENT , KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO ,                               KC_BSPC, KC_P4, KC_P5, KC_P6, KC_PMNS, KC_PENT,
+    MC_PASS2, KC_ENT , KC_END  , KC_NO  , KC_PGDN, KC_NO ,                               C(KC_F), KC_P1, KC_P2, KC_P3, KC_PSLS, KC_PAST,
                   TG(4), KC_NO, KC_BSPC, KC_DEL, KC_LSFT,                          KC_PDOT, KC_P0, KC_NO, KC_NO, TG(4)
   ),
 
@@ -65,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                   KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,                KC_RCTL, KC_RSFT, KC_NO, KC_NO, KC_NO
   ),
 
-  [6] = LAYOUT_universal( /* setting layter */
+  [6] = LAYOUT_universal( /* setting layer */
     QK_BOOT, KC_NO   , KC_NO  , KC_NO   , KC_NO  , KBC_RST ,                              KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, QK_BOOT,
     KC_NO  , CPI_I100, CPI_I1K, SCRL_DVD, AML_I50, KBC_SAVE,                              KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO  ,
     KC_NO  , CPI_D100, CPI_D1K, SCRL_DVI, AML_D50, AML_TO  ,                              KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO  ,
@@ -74,6 +80,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // clang-format on
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!record->event.pressed) {
+    return true;
+  }
+
+  switch (keycode) {
+    case MC_ID:
+      SEND_STRING("6046");
+      return false;
+    case MC_PASS1:
+      SEND_STRING("11909260M");
+      return false;
+    case MC_PASS2:
+      SEND_STRING("M11909260");
+      return false;
+  }
+
+  return true;
+}
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   // Auto enable scroll mode when the highest layer is 3
