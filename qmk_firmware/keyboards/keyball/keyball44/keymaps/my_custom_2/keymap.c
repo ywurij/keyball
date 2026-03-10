@@ -26,6 +26,13 @@ enum custom_keycodes {
   MC_PASS2,
 };
 
+static bool scroll_mode_locked = false;
+
+static void apply_scroll_mode(layer_state_t state) {
+  const bool layer_scroll = (get_highest_layer(state) == 3);
+  keyball_set_scroll_mode(scroll_mode_locked || layer_scroll);
+}
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
@@ -82,6 +89,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case SCRL_TO:
+      if (record->event.pressed) {
+        scroll_mode_locked = !scroll_mode_locked;
+        apply_scroll_mode(layer_state);
+      }
+      return false;
+    case SCRL_MO:
+      if (record->event.pressed) {
+        keyball_set_scroll_mode(true);
+      } else {
+        apply_scroll_mode(layer_state);
+      }
+      return false;
+    default:
+      break;
+  }
+
   if (!record->event.pressed) {
     return true;
   }
@@ -102,8 +127,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  // Auto enable scroll mode when the highest layer is 3
-  keyball_set_scroll_mode(get_highest_layer(state) == 3);
+  apply_scroll_mode(state);
   return state;
 }
 
